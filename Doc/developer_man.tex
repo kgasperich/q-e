@@ -553,7 +553,7 @@ Makefiles must be set to the same dependencies of the intended target
 (e.g. pw.x in the following example) in the top-level Makefile.
 }
 \begin{verbatim}
-all : tldeps pw.x generate_vdW_kernel_table.x ...
+all : tldeps pw.x ...
 \end{verbatim}
 {\em Targets that will be build - add here new executables}
 \begin{verbatim}
@@ -1297,6 +1297,23 @@ read\_namelists.f90 )
 \end{verbatim}
 \end{enumerate}
 
+\subsection{Updating documentation}
+Input variable documentation for most codes is contained into a
+\texttt{*/Doc/INPUT\_*.def} file. Simple utilities may have instead
+the input documentation in the header of the code source.
+Files .def are processed to produce .xml, .txt, .html files.
+The latter is the most important, being the one that is available
+online in the web site.
+
+The documentation must be processed with command ``make doc'' before
+the release. Note that:
+\begin{itemize}
+\item in order to produce .xml, .txt, .html file,
+  "tcl", "tcllib", "xsltproc" are needed;
+\item in order to build .pdf files from LaTeX, "pdflatex" is needed;
+\item in order to build html files for user guide and developer manual,
+"latex2html" and "convert" (from Image-Magick) are needed.
+\end{itemize}
 
 \section{Using git}
 \label{Sec:git}
@@ -1332,7 +1349,7 @@ Development can proceed in different ways:
 \item Via ``merge'' requests from a branch of the q-e repository
       ({\em not recommended})
 \item Directly into the ``develop'' branch, or in a ``backport'' branch
-  if existing.
+	if existing ({\em strongly discouraged}).
 \end{enumerate}
 The first option is the recommended one. To start:
 \begin{itemize}
@@ -1452,7 +1469,7 @@ The test-suite is also used by different Buildbot test-farm to automatically tes
 
 The currently active test-farm machine can be accessed at 
 \texttt{test-farm.quantum-espresso.org} (points to a machine at CINECA:
-\verb|{http://130.186.13.198:8010/#/}|
+\verb|{http://130.186.13.169:8010/#/}|
 
 \subsection{How to add tests for a new executable}
 
@@ -2061,8 +2078,6 @@ First-level tags:
         <HUBBARD_ALPHA>
         <HUBBARD_BETA>
      endif
-     if <NON_LOCAL_DF>
-          <VDW_KERNEL_NAME>
      if <DFT_D2>
           <SCALING_FACTOR>
           <CUTOFF_RADIUS>

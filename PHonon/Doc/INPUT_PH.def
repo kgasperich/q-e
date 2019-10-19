@@ -276,6 +276,22 @@ input_description -distribution {Quantum Espresso} -package PWscf -program ph.x 
 	    }
 	}
 
+    var el_ph_nsigma -type INTEGER {
+        default { 10 }
+        info {
+            The number of double-delta smearing values used in an
+            electron-phonon coupling calculation.
+        }
+    }
+
+    var el_ph_sigma -type REAL {
+        default { 0.02 }
+        info {
+            The spacing between double-delta smearing values used in
+            an electron-phonon coupling calculation.
+        }
+    }
+
 	var lshift_q  -type LOGICAL { 
 	    default { .false. }
 	    info { 
@@ -411,6 +427,25 @@ input_description -distribution {Quantum Espresso} -package PWscf -program ph.x 
                 This occurs even in the Gamma case.
                 nk1,nk2,nk3 are the parameters of the Monkhorst-Pack grid
                 with offset determined by k1,k2,k3.
+            }
+        }
+
+        var diagonalization -type CHARACTER {
+            default { 'david' }
+            options {
+	        info {
+                  Diagonalization method for the non-SCF calculations.
+ 	        }
+                opt -val 'david' {
+                    Davidson iterative diagonalization with overlap matrix
+                    (default). Fast, may in some rare cases fail.
+                }
+
+                opt -val 'cg' {
+                    Conjugate-gradient-like band-by-band diagonalization.
+                    Slower than 'david' but uses less memory and is 
+                    (a little bit) more robust.
+                }
             }
         }
 

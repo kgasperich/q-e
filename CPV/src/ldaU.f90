@@ -146,10 +146,12 @@
          do ia = 1, na(is)
             do i = 1, upf(is)%nwfc
                l = upf(is)%lchi(i)
-               if (l == Hubbard_l(is)) offset (is,ia) = nwfcU
-               nwfcU = nwfcU + 2 * l + 1
-            end do
-         end do
+               if (l == Hubbard_l(is)) then 
+                  offset (is,ia) = nwfcU
+                  nwfcU = nwfcU + 2 * l + 1
+               end if
+            end do   
+         end do 
       end do
       !
       allocate(wfcU(ngw,nwfcU))
@@ -259,7 +261,7 @@
         ! poor-man parallelization over bands
         ! - if nproc_pool=1   : nb_s=1, nb_e=n, mykey=0
         ! - if nproc_pool<=nbnd:each processor calculates band nb_s to nb_e; mykey=0
-        ! - if nproc_pool>nbnd :each processor takes care of band na_s=nb_e;
+        ! - if nproc_pool>nbnd :each processor takes care of band nb_s=nb_e;
         !   mykey labels how many times each band appears (mykey=0 first time etc.)
         !
         CALL block_distribute( n, me_pool, nproc_pool, nb_s, nb_e, mykey )
@@ -757,8 +759,7 @@
          isa = isa + na(is)
       ENDDO
 !
-      IF ( natwfc+offset(nsp,na(nsp)) .NE. nwfcU) &
-         CALL errore('atomic_wfc','unexpected error',natwfc)
+      IF (natwfc+offset(nsp,na(nsp)) .NE. nwfcU )  CALL errore('atomic_wfc','unexpected error',natwfc)
 !
       do i = 1,nwfcU
         call dscal(2*ngw,fpi/sqrt(omega),wfcU(1,i),1)

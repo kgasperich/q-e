@@ -144,7 +144,6 @@ alpha2f.o : phcom.o
 bcast_ph_input.o : ../../LR_Modules/lrcom.o
 bcast_ph_input.o : ../../Modules/check_stop.o
 bcast_ph_input.o : ../../Modules/control_flags.o
-bcast_ph_input.o : ../../Modules/input_parameters.o
 bcast_ph_input.o : ../../Modules/io_files.o
 bcast_ph_input.o : ../../Modules/io_global.o
 bcast_ph_input.o : ../../Modules/ions_base.o
@@ -298,10 +297,15 @@ d2ionq.o : ../../Modules/kind.o
 d2ionq.o : ../../Modules/mp_bands.o
 d2ionq.o : ../../PW/src/Coul_cut_2D.o
 d2ionq.o : ../../UtilXlib/mp.o
-d2ionq_mm.o : ../../Modules/constants.o
-d2ionq_mm.o : ../../Modules/mm_dispersion.o
-d2ionq_mm.o : ../../Modules/mp_images.o
-d2ionq_mm.o : ../../UtilXlib/mp.o
+d2ionq_disp.o : ../../Modules/constants.o
+d2ionq_disp.o : ../../Modules/control_flags.o
+d2ionq_disp.o : ../../Modules/io_files.o
+d2ionq_disp.o : ../../Modules/io_global.o
+d2ionq_disp.o : ../../Modules/kind.o
+d2ionq_disp.o : ../../Modules/mm_dispersion.o
+d2ionq_disp.o : ../../Modules/mp_images.o
+d2ionq_disp.o : ../../UtilXlib/mp.o
+d2ionq_disp.o : save_ph_input.o
 d2mxc.o : ../../Modules/kind.o
 d2nsq_bare.o : ../../LR_Modules/lrcom.o
 d2nsq_bare.o : ../../Modules/io_global.o
@@ -463,6 +467,7 @@ do_q2r.o : ../../Modules/mp_global.o
 do_q2r.o : ../../Modules/mp_images.o
 do_q2r.o : ../../Modules/mp_world.o
 do_q2r.o : ../../UtilXlib/mp.o
+do_q2r.o : elph.o
 do_q2r.o : io_dyn_mat.o
 do_q2r.o : io_dyn_mat_old.o
 do_q2r.o : rigid.o
@@ -998,6 +1003,7 @@ matdyn.o : ../../PW/src/pwcom.o
 matdyn.o : ../../PW/src/symm_base.o
 matdyn.o : ../../PW/src/tetra.o
 matdyn.o : ../../UtilXlib/mp.o
+matdyn.o : elph.o
 matdyn.o : io_dyn_mat.o
 matdyn.o : rigid.o
 obsolete.o : ../../LR_Modules/lrcom.o
@@ -1024,7 +1030,6 @@ openfilq.o : ../../LR_Modules/lrcom.o
 openfilq.o : ../../Modules/cell_base.o
 openfilq.o : ../../Modules/control_flags.o
 openfilq.o : ../../Modules/fft_base.o
-openfilq.o : ../../Modules/input_parameters.o
 openfilq.o : ../../Modules/io_files.o
 openfilq.o : ../../Modules/io_global.o
 openfilq.o : ../../Modules/ions_base.o
@@ -1123,7 +1128,6 @@ phq_readin.o : ../../Modules/check_stop.o
 phq_readin.o : ../../Modules/control_flags.o
 phq_readin.o : ../../Modules/fft_base.o
 phq_readin.o : ../../Modules/funct.o
-phq_readin.o : ../../Modules/input_parameters.o
 phq_readin.o : ../../Modules/io_files.o
 phq_readin.o : ../../Modules/io_global.o
 phq_readin.o : ../../Modules/ions_base.o
@@ -1320,6 +1324,7 @@ q2r.o : ../../Modules/kind.o
 q2r.o : ../../Modules/mp_global.o
 q2r.o : ../../Modules/mp_world.o
 q2r.o : ../../UtilXlib/mp.o
+q2r.o : elph.o
 q2trans.o : ../../FFTXlib/fft_scalar.o
 q2trans.o : ../../Modules/constants.o
 q2trans.o : ../../Modules/environment.o
@@ -1329,6 +1334,7 @@ q2trans.o : ../../Modules/mp_global.o
 q2trans.o : ../../Modules/mp_world.o
 q2trans.o : ../../UtilXlib/mp.o
 q2trans.o : ../../iotk/src/iotk_module.o
+q2trans.o : elph.o
 q2trans.o : io_dyn_mat.o
 q2trans.o : io_dyn_mat_old.o
 q2trans.o : rigid.o
